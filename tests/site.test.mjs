@@ -140,6 +140,20 @@ test('implements synchronized comparison and resilient progressive enhancement',
   assert.match(script, /prefers-reduced-motion/);
 });
 
+test('defaults A to the best verified final and B to the comparable four-step run', async () => {
+  const html = await readText('index.html');
+  const railA = html.match(/<article class="compare-rail" data-compare-side="a">[\s\S]*?<\/article>/)?.[0] ?? '';
+  const railB = html.match(/<article class="compare-rail" data-compare-side="b">[\s\S]*?<\/article>/)?.[0] ?? '';
+
+  assert.match(railA, /data-default="final20"/);
+  assert.match(railA, /<option value="final20" selected>/);
+  assert.match(railA, /<h3 data-compare-title>Final C \/ 20 steps<\/h3>/);
+  assert.match(railA, /1024×576 \/ 243 frames \/ 10\.125 sec/);
+  assert.match(railA, /MiniMax_H3_KFP_FINAL_C_1024x576_243f_20step_00001_\.mp4/);
+  assert.match(railB, /data-default="c4"/);
+  assert.match(railB, /<option value="c4" selected>/);
+});
+
 test('exposes five selectable videos and the complete A/B console', async () => {
   const html = await readText('index.html');
   for (const id of [
