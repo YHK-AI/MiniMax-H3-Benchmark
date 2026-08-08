@@ -19,12 +19,27 @@ The 20-step preset is the strongest **verified** result on this machine, not a c
 ## Verified environment
 
 - Lenovo 21J8, Windows 11 Home (build 26200)
+- Intel Core i9-13900H, 14 cores / 20 threads
 - NVIDIA GeForce RTX 4060 Laptop GPU, 8188 MiB VRAM, driver 581.08
-- 32 GB system RAM and NVMe storage
+- 2 × 16 GiB Samsung DDR5-5600, configured at 5200 MT/s (31.72 GiB usable)
+- Samsung `SAMSUNG MZVL21T0HCLR-00BL2` 1 TB NVMe system disk
+- Western Digital `WD PC SN740 SDDPTQE-2T00` 2 TB NVMe workspace/model disk (`E:`)
 - Python 3.13.9
 - PyTorch 2.13.0+cu130 / CUDA 13.0
 - ComfyUI 0.30.0
 - Launch flags: `--fast-disk --reserve-vram 2`
+
+## Measured local footprint
+
+| Item | Measured size | Notes |
+| --- | ---: | --- |
+| Four MiniMax H3 model files and model metadata | 39.554 GiB | Required for this tested stack |
+| Python virtual environment | 4.041 GiB | Includes the verified PyTorch/CUDA runtime |
+| Seven local output MP4 files | 0.043 GiB | Original ComfyUI output, including benchmark media |
+| Published repository copy (excluding `.git`) | 46.58 MiB | Five MP4s, two PNGs, site, workflow, and docs |
+| Recommended operating headroom | ≥ 60 GiB free | Planning allowance, not measured file use |
+
+Keep models, downloads, and temporary generation files on `E:`. During this audit the system disk had only about 1.47 GB free. For a fresh download, 80 GB free is safer because interrupted downloads may temporarily retain partial files.
 
 ## What is included
 
@@ -41,6 +56,7 @@ No model weights, ComfyUI runtime, caches, secrets, or machine-specific logs are
 ## Website behavior
 
 - The A/B comparison console supports **progress alignment** for matching relative story beats and **time alignment** for matching real seconds.
+- A opens on the best verified **Final C / 20-step** result; B opens on the directly comparable **C / 4-step** result.
 - Audio A and audio B are mutually exclusive, so no more than one result is audible at once.
 - All five videos and two images open in the same media viewer. It supports fit-to-window and **original 1:1** modes, Left/Right arrow navigation, and Esc to close.
 - The **EN / 中文** switch uses `localStorage` key `minimax-h3-locale`. English is the safe default, and changing language preserves playback and comparison state.

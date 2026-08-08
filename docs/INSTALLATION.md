@@ -10,10 +10,12 @@ This guide reproduces the verified Windows deployment used by this repository. M
 | --- | --- |
 | Computer | Lenovo 21J8 |
 | OS | Windows 11 Home, build 26200 |
+| CPU | Intel Core i9-13900H, 14 cores / 20 threads |
 | GPU | NVIDIA GeForce RTX 4060 Laptop GPU |
 | VRAM | 8188 MiB |
-| RAM | 32 GB |
-| Storage | NVMe SSD |
+| RAM | 2 × 16 GiB Samsung DDR5-5600, configured at 5200 MT/s; 31.72 GiB usable |
+| System disk | `SAMSUNG MZVL21T0HCLR-00BL2`, 1 TB NVMe |
+| Workspace/model disk | `WD PC SN740 SDDPTQE-2T00`, 2 TB NVMe (`E:`) |
 | Driver | NVIDIA 581.08 |
 | Python | 3.13.9 |
 | PyTorch | 2.13.0+cu130 |
@@ -21,6 +23,8 @@ This guide reproduces the verified Windows deployment used by this repository. M
 | ComfyUI | 0.30.0 |
 
 Newer compatible versions may work, but re-run the preflight matrix after an upgrade. Do not assume timing or memory behavior remains identical.
+
+Measured retained storage after cleanup was 39.554 GiB for `models/`, 4.041 GiB for `.venv/`, and 0.043 GiB for seven local MP4 outputs. The publishable repository copy was 46.58 MiB excluding `.git`. Keep at least **60 GiB free** for normal operation; 80 GB free before a fresh download is safer because partial downloads can temporarily require another 20 GB or more. Put models and temporary generation data on `E:`—the system disk had only about 1.47 GB free during this audit.
 
 ## 2. Use Codex to perform the setup
 

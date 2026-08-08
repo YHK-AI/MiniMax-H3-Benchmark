@@ -365,6 +365,30 @@ test('documents independent GitHub Pages publication without model files', async
   assert.match(chinese, /不包含模型权重/);
 });
 
+test('documents the exact host, storage footprint, and per-run resource evidence bilingually', async () => {
+  const files = await Promise.all([
+    'README.md', 'README.zh-CN.md',
+    'docs/INSTALLATION.md', 'docs/INSTALLATION.zh-CN.md',
+    'docs/BENCHMARK.md', 'docs/BENCHMARK.zh-CN.md',
+  ].map(readText));
+  const all = files.join('\n');
+  for (const token of [
+    'Intel Core i9-13900H', '14 cores / 20 threads',
+    '2 × 16 GiB Samsung DDR5-5600', '5200 MT/s',
+    'SAMSUNG MZVL21T0HCLR-00BL2', 'WD PC SN740 SDDPTQE-2T00',
+    '39.554 GiB', '4.041 GiB', '46.58 MiB', '60 GiB',
+  ]) assert.ok(all.includes(token), `documentation must include ${token}`);
+  for (const report of [files[4], files[5]]) {
+    for (const token of ['6.38 MiB', '4.83 MiB', '16.94 MiB', '8.42 MiB', '6.82 MiB']) {
+      assert.ok(report.includes(token), `benchmark report must include ${token}`);
+    }
+    assert.match(report, /8188 MiB/);
+    assert.match(report, /6\.46 (?:GB|GiB)/);
+  }
+  assert.match(files[4], /CPU utilization and power were not continuously sampled/i);
+  assert.match(files[5], /未连续采集 CPU 利用率和功耗/);
+});
+
 test('documents the synchronized comparison console', async () => {
   const readme = await readText('README.md');
   assert.match(readme, /A\/B comparison/i);

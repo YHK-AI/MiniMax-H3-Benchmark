@@ -19,12 +19,27 @@
 ## 已验证环境
 
 - Lenovo 21J8，Windows 11 家庭版（build 26200）
+- Intel Core i9-13900H，14 核 / 20 线程（14 cores / 20 threads）
 - NVIDIA GeForce RTX 4060 Laptop GPU，8188 MiB 显存，驱动 581.08
-- 32GB 系统内存与 NVMe 固态硬盘
+- 2 × 16 GiB Samsung DDR5-5600，实际配置 5200 MT/s（系统可用 31.72 GiB）
+- Samsung `SAMSUNG MZVL21T0HCLR-00BL2` 1 TB NVMe 系统盘
+- Western Digital `WD PC SN740 SDDPTQE-2T00` 2 TB NVMe 工作盘/模型盘（`E:`）
 - Python 3.13.9
 - PyTorch 2.13.0+cu130 / CUDA 13.0
 - ComfyUI 0.30.0
 - 启动参数：`--fast-disk --reserve-vram 2`
+
+## 本机实测占用
+
+| 项目 | 实测大小 | 说明 |
+| --- | ---: | --- |
+| 4 个 MiniMax H3 模型及模型元数据 | 39.554 GiB | 当前已验证模型栈所必需 |
+| Python 虚拟环境 | 4.041 GiB | 包含已验证的 PyTorch/CUDA 环境 |
+| 7 个本机输出 MP4 | 0.043 GiB | ComfyUI 原始输出，含基准媒体 |
+| 发布仓库副本（不含 `.git`） | 46.58 MiB | 5 个 MP4、2 张 PNG、网站、工作流与文档 |
+| 建议运行余量 | 至少 60 GiB 空闲 | 规划余量，不是文件实测占用 |
+
+模型、下载文件和生成临时数据应放在 `E:`。本次审计时系统盘仅约 1.47 GB 空余。全新下载时建议预留 80 GB，因为中断下载可能暂时保留不完整文件。
 
 ## 仓库内容
 
@@ -41,6 +56,7 @@
 ## 网站交互
 
 - A/B 对比台支持**进度对齐**和**时间对齐**：前者按故事进度匹配，后者按真实秒数匹配。
+- A 默认展示最佳已验证的 **Final C / 20 步**，B 默认展示可直接比较的 **C / 4 步**。
 - A 声音与 B 声音互斥，任何时刻最多只播放一侧声音。
 - 5 个视频和 2 张图片都可在同一查看器中打开，支持适应窗口、**1:1 原始大小**、左右方向键切换和 Esc 关闭。
 - **EN / 中文**切换使用 `localStorage` 的 `minimax-h3-locale` 键；网站默认使用英语，切换不会重置播放和对比状态。

@@ -10,10 +10,12 @@
 | --- | --- |
 | 电脑 | Lenovo 21J8 |
 | 系统 | Windows 11 家庭版，build 26200 |
+| CPU | Intel Core i9-13900H，14 核 / 20 线程（14 cores / 20 threads） |
 | GPU | NVIDIA GeForce RTX 4060 Laptop GPU |
 | 显存 | 8188 MiB |
-| 内存 | 32GB |
-| 存储 | NVMe SSD |
+| 内存 | 2 × 16 GiB Samsung DDR5-5600，实际配置 5200 MT/s；系统可用 31.72 GiB |
+| 系统盘 | `SAMSUNG MZVL21T0HCLR-00BL2`，1 TB NVMe |
+| 工作盘/模型盘 | `WD PC SN740 SDDPTQE-2T00`，2 TB NVMe（`E:`） |
 | 驱动 | NVIDIA 581.08 |
 | Python | 3.13.9 |
 | PyTorch | 2.13.0+cu130 |
@@ -21,6 +23,8 @@
 | ComfyUI | 0.30.0 |
 
 更新的兼容版本可能也能工作，但升级后必须重新执行预检矩阵，不能假定耗时和内存表现完全相同。
+
+清理后的保留占用实测为：`models/` 39.554 GiB、`.venv/` 4.041 GiB、7 个本机 MP4 输出 0.043 GiB；可发布仓库副本不含 `.git` 时为 46.58 MiB。正常运行应至少保留 **60 GiB 空闲空间**；全新下载前保留 80 GB 更安全，因为不完整下载可能临时多占 20 GB 以上。模型和生成临时数据应放在 `E:`；本次审计时系统盘只剩约 1.47 GB。
 
 ## 2. 让 Codex 完成部署
 

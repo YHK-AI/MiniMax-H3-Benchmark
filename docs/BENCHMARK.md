@@ -14,17 +14,25 @@ What is the highest practical MiniMax H3 configuration that completes end-to-end
 - A run counts as successful only when sampling, video VAE, audio VAE, and MP4 muxing all finish
 - The prompt describes Unreal Engine 5-style 3D side-scrolling kung-fu panda gameplay with a single continuous side-view shot
 
+## Host and fixed storage cost
+
+The measured host was a Lenovo 21J8 with an Intel Core i9-13900H (14 cores / 20 threads), an NVIDIA GeForce RTX 4060 Laptop GPU (8188 MiB, driver 581.08), and 2 × 16 GiB Samsung DDR5-5600 configured at 5200 MT/s. Storage was a `SAMSUNG MZVL21T0HCLR-00BL2` 1 TB NVMe system disk plus a `WD PC SN740 SDDPTQE-2T00` 2 TB NVMe workspace disk.
+
+Fixed retained storage was 39.554 GiB for model files, 4.041 GiB for the Python environment, and 46.58 MiB for the published site copy. Keep at least 60 GiB free as operating headroom; that allowance is not measured file use.
+
 ## Results
 
-| Experiment | Resolution | Frames / duration | Steps | Result | Evidence |
-| --- | ---: | ---: | ---: | --- | --- |
-| A upper bound | 1344×768 | 362 / 15.08 s | 1 | CUDA OOM | QKV requested 4.38 GiB with about 4.32 GiB already allocated |
-| B-long | 1344×768 | 243 / 10.13 s | 1 | Stalled | Private memory reached about 27.8 GiB; unloading stopped progressing |
-| B-short preflight | 1344×768 | 124 / 5.17 s | 1 | Success | Complete decodable MP4; timing not recorded |
-| B-short | 1344×768 | 124 / 5.17 s | 4 | Success | 537.49 s; highest verified resolution |
-| C preflight | 1024×576 | 243 / 10.13 s | 1 | Success | Complete decodable MP4; timing not recorded |
-| C balanced | 1024×576 | 243 / 10.13 s | 4 | Success | 650.96 s; complete four-beat narrative |
-| Final C | 1024×576 | 243 / 10.13 s | 20 | Recommended | 2762.89 s; complete media verification |
+| Experiment | Resolution | Frames / duration | Steps | Generation time | Result | VRAM evidence | RAM / private memory | MP4 size | Measurement basis |
+| --- | ---: | ---: | ---: | ---: | --- | --- | --- | ---: | --- |
+| A upper bound | 1344×768 | 362 / 15.08 s | 1 | Failed before output | CUDA OOM | About 4.32 GiB allocated + 4.38 GiB QKV request | Peak not recorded | — | Runtime error log |
+| B-long | 1344×768 | 243 / 10.13 s | 1 | Stalled | Failed | About 7.9 / 8.2 GB | About 27.8 GiB private | — | Process / GPU observation |
+| B-short preflight | 1344×768 | 124 / 5.17 s | 1 | Not recorded | Success | Completed within 8188 MiB; peak not recorded | Peak not recorded | 6.38 MiB | Output file measurement |
+| B-short | 1344×768 | 124 / 5.17 s | 4 | 537.49 s | Success | Completed within 8188 MiB; peak not recorded | Peak not recorded | 4.83 MiB | Runtime + output file |
+| C preflight | 1024×576 | 243 / 10.13 s | 1 | Not recorded | Success | Peak not recorded | Peak not recorded | 16.94 MiB | Output file measurement |
+| C balanced | 1024×576 | 243 / 10.13 s | 4 | 650.96 s | Success | Peak not recorded | Peak not recorded | 8.42 MiB | Runtime + output file |
+| Final C | 1024×576 | 243 / 10.13 s | 20 | 2762.89 s | Recommended | About 6.46 GB observed peak | Peak not recorded | 6.82 MiB | GPU observation + output file |
+
+CPU utilization and power were not continuously sampled. Successful-run RAM peaks and several VRAM peaks were not recorded, so the table says so instead of presenting estimates. Output sizes are direct filesystem measurements; failed runs created no MP4.
 
 ## Decision
 
