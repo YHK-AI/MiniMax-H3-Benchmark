@@ -204,7 +204,7 @@ test('exposes five selectable videos and the complete A/B console', async () => 
   for (const field of ['media-frames', 'media-duration', 'media-steps', 'media-elapsed', 'media-status-key']) {
     assert.equal((html.match(new RegExp(`data-${field}=`, 'g')) ?? []).length, 5);
   }
-  assert.match(html, /id="compare-a-select"[^>]*data-default="bshort4"/);
+  assert.match(html, /id="compare-a-select"[^>]*data-default="final20"/);
   assert.match(html, /id="compare-b-select"[^>]*data-default="c4"/);
 });
 
