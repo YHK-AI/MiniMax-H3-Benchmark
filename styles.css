@@ -1203,6 +1203,8 @@ tbody tr:hover { background: rgba(228, 225, 218, 0.025); }
   .section-heading-actions { align-items: flex-start; flex-direction: column; }
   .filter-group { width: 100%; }
   .filter-button { flex: 1; }
+  .resource-table { min-width: 0; }
+  caption { display: block; width: 100%; }
   table,
   tbody,
   tr,
@@ -1222,13 +1224,16 @@ tbody tr:hover { background: rgba(228, 225, 218, 0.025); }
   .media-stage { padding: var(--space-2); }
 }
 
-@media (max-width: 320px) {
-  :root { --page: calc(100% - 12px); }
+@media (max-width: 480px) {
   .local-proof { display: none; }
   .lab-masthead { grid-template-columns: minmax(0, 1fr) auto; }
   .masthead-tools { grid-column: 2; }
-  .language-switcher button { min-width: 40px; padding-inline: var(--space-2); }
   .site-nav { grid-column: 1 / -1; }
+}
+
+@media (max-width: 320px) {
+  :root { --page: calc(100% - 12px); }
+  .language-switcher button { min-width: 40px; padding-inline: var(--space-2); }
   .decision-rail h1 { margin-right: 0; }
   .run-strip { grid-template-columns: repeat(5, 210px); }
 }

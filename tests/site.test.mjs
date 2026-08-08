@@ -12,6 +12,7 @@ const requiredFiles = [
   'styles.css',
   'app.js',
   'i18n.js',
+  'favicon.svg',
   'README.md',
   '.nojekyll',
   '.gitattributes',
@@ -57,6 +58,7 @@ async function directoryNames(relativePath) {
 test('ships every required static entry file', async () => {
   const results = await Promise.all(requiredFiles.map(exists));
   assert.deepEqual(results, requiredFiles.map(() => true));
+  assert.match(await readText('index.html'), /<link rel="icon" href="favicon\.svg" type="image\/svg\+xml">/);
 });
 
 test('ships exactly the approved public media assets', async () => {
@@ -350,6 +352,18 @@ test('includes responsive, reduced-motion and print styles', async () => {
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /@media\s+print/i);
   assert.match(css, /:focus-visible/);
+});
+
+test('keeps the mobile masthead within a narrow viewport', async () => {
+  const css = await readText('styles.css');
+  assert.match(css, /@media\s*\(max-width:\s*480px\)[\s\S]*?\.local-proof\s*\{\s*display:\s*none;\s*\}/);
+  assert.match(css, /@media\s*\(max-width:\s*480px\)[\s\S]*?\.lab-masthead\s*\{\s*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto;\s*\}/);
+});
+
+test('stacks the resource matrix without a desktop minimum width on mobile', async () => {
+  const css = await readText('styles.css');
+  assert.match(css, /@media\s*\(max-width:\s*760px\)[\s\S]*?\.resource-table\s*\{\s*min-width:\s*0;\s*\}/);
+  assert.match(css, /@media\s*\(max-width:\s*760px\)[\s\S]*?caption\s*\{\s*display:\s*block;\s*width:\s*100%;\s*\}/);
 });
 
 test('documents independent GitHub Pages publication without model files', async () => {
