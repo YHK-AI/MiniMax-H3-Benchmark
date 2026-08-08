@@ -101,6 +101,43 @@ test('contains the complete semantic report and approved claims', async () => {
   assert.match(html, /RTX 4060 Laptop 8GB/i);
 });
 
+test('publishes the exact device profile and seven-run resource evidence', async () => {
+  const html = await readText('index.html');
+
+  assert.match(html, /id="device-profile"/);
+  for (const value of [
+    'Lenovo 21J8',
+    'Intel Core i9-13900H',
+    '14 cores / 20 threads',
+    'NVIDIA GeForce RTX 4060 Laptop GPU',
+    '8188 MiB',
+    '581.08',
+    '2 × 16 GiB Samsung DDR5-5600',
+    '5200 MT/s',
+    'SAMSUNG MZVL21T0HCLR-00BL2',
+    'WD PC SN740 SDDPTQE-2T00',
+    '39.554 GiB',
+    '4.041 GiB',
+    '46.58 MiB',
+    '60 GiB',
+  ]) assert.ok(html.includes(value), `device/resource profile must include ${value}`);
+
+  assert.equal((html.match(/data-resource-run=/g) ?? []).length, 7);
+  for (const run of ['upper', 'b-long', 'b-short-1', 'b-short-4', 'c-1', 'c-4', 'final-20']) {
+    assert.match(html, new RegExp(`data-resource-run="${run}"`));
+  }
+  for (const key of [
+    'matrix.generationTime', 'matrix.vram', 'matrix.ramPrivate',
+    'matrix.outputSize', 'matrix.measurementBasis',
+  ]) assert.match(html, new RegExp(`data-i18n="${key.replace('.', '\\.')}"`));
+  for (const size of ['6.38 MiB', '4.83 MiB', '16.94 MiB', '8.42 MiB', '6.82 MiB']) {
+    assert.ok(html.includes(size), `resource matrix must include ${size}`);
+  }
+  assert.match(html, /Peak not recorded/);
+  assert.match(html, /CPU utilization and power were not continuously sampled/);
+  assert.match(html, /class="[^"]*resource-table/);
+});
+
 test('ships an English fallback and an accessible persistent language switch', async () => {
   const [html, css, script] = await Promise.all([
     readText('index.html'), readText('styles.css'), readText('app.js'),
