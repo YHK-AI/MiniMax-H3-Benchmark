@@ -1,0 +1,33 @@
+name: Benchmark result
+description: Propose a reproducible MiniMax H3 result or correction.
+title: "[Benchmark]: "
+labels: [benchmark]
+body:
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware and software
+      description: Include GPU, VRAM, RAM, OS, driver, Python, PyTorch/CUDA, and ComfyUI version.
+    validations:
+      required: true
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Model and generation configuration
+      description: Include model filenames, resolution, frames, steps, seed, sampler, scheduler, and launch flags.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result and measurement
+      description: State success, OOM, or stall; include end-to-end time and whether both VAEs and MP4 muxing completed.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Reproducible evidence
+      description: Link media or sanitized logs and include hashes where possible. Do not upload model files.
+    validations:
+      required: true

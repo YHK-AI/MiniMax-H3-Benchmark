@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090d11">
+    <meta name="description" content="Local MiniMax H3 video generation results, configuration comparisons, failure boundaries, and the best verified configuration on an RTX 4060 Laptop 8GB.">
+    <title>MiniMax H3 Local Performance Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to main content</a>
+    <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
+
+    <header class="site-header lab-masthead" aria-label="Site header" data-i18n-aria-label="a11y.siteHeader">
+      <a class="brand" href="#result" aria-label="Back to top" data-i18n-aria-label="a11y.backToTop">
+        <span class="brand-signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span><strong>MiniMax H3</strong><small data-i18n="brand.subtitle">Bamboo Test Range</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Page navigation" data-i18n-aria-label="a11y.mainNav">
+        <a href="#comparison" data-i18n="nav.comparison">A/B Workbench</a>
+        <a href="#recommendation" data-i18n="nav.recommendation">Configurations</a>
+        <a href="#matrix" data-i18n="nav.matrix">Run Data</a>
+        <a href="#reproduce" data-i18n="nav.reproduce">Reproduce</a>
+      </nav>
+      <div class="masthead-tools">
+        <span class="local-proof"><i aria-hidden="true"></i><span data-i18n="local.proof">RTX 4060 Laptop · 8GB · Local run</span></span>
+        <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="a11y.languageSwitcher">
+          <button type="button" data-locale="en" aria-pressed="true" title="English" data-i18n-title="language.english">EN</button>
+          <button type="button" data-locale="zh-CN" aria-pressed="false" title="Simplified Chinese" data-i18n-title="language.chinese">中文</button>
+          <span id="locale-status" class="sr-only" aria-live="polite"></span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="decision-rail section" id="result" aria-labelledby="page-title">
+        <div class="decision-label">
+          <span class="status-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><small data-i18n="decision.current">Current finding</small><strong data-i18n="decision.verified">Verified</strong></div>
+        </div>
+        <h1 id="page-title" data-i18n="decision.title">Local best verified configuration</h1>
+        <dl class="decision-metrics">
+          <div><dt data-i18n="decision.image">Frame</dt><dd>1024×576</dd></div>
+          <div><dt data-i18n="decision.length">Length</dt><dd data-i18n="decision.framesValue">243 frames</dd></div>
+          <div><dt data-i18n="decision.sampling">Sampling</dt><dd>20 steps</dd></div>
+          <div><dt data-i18n="decision.duration">Duration</dt><dd data-i18n="decision.durationValue">10.125 sec</dd></div>
+          <div><dt data-i18n="decision.generation">Generation</dt><dd>46m 03s</dd></div>
+        </dl>
+        <p class="decision-note" data-i18n="decision.note">A complete, decodable result produced locally on an RTX 4060 Laptop 8GB — not the absolute hardware limit.</p>
+      </section>
+
+      <section class="compare-lab section" id="comparison" aria-labelledby="comparison-title">
+        <div class="compare-intro">
+          <div><h2 id="comparison-title" data-i18n="compare.title">A/B synchronized comparison workbench</h2><p data-i18n="compare.intro">Align by progress or clock time to compare narrative, clarity, and stability directly.</p></div>
+          <a href="#run-selector" data-i18n="compare.chooseRuns">Choose other runs</a>
+        </div>
+
+        <div class="compare-rails twin-bay">
+          <article class="compare-rail" data-compare-side="a">
+            <div class="compare-select-row"><span class="bay-id bay-a">A</span>
+              <label for="compare-a-select" data-i18n="compare.runA">Run A</label>
+              <select id="compare-a-select" data-default="bshort4">
+                <option value="final20">Final C tier / 20 steps</option>
+                <option value="c4">C tier / 4 steps</option>
+                <option value="bshort4" selected>B-short / 4 steps</option>
+                <option value="c1">C tier preflight / 1 step</option>
+                <option value="bshort1">B-short preflight / 1 step</option>
+              </select>
+            </div>
+            <header><div><h3 data-compare-title>B-short / 4 steps</h3><p data-compare-spec>1344×768 / 124 frames / 5.167 sec</p></div><a class="compare-source" data-compare-source data-media-trigger data-media-id="bshort4" href="assets/videos/MiniMax_H3_KFP_Bshort_1344x768_124f_4step_00001_.mp4" data-i18n="compare.nativeView">View 1:1</a></header>
+            <div class="video-shell">
+              <video data-compare-video controls muted playsinline preload="metadata" poster="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png" aria-label="Track A comparison video" data-i18n-aria-label="a11y.compareA">
+                <source src="assets/videos/MiniMax_H3_KFP_Bshort_1344x768_124f_4step_00001_.mp4" type="video/mp4">
+              </video>
+              <p class="media-error" hidden><span data-i18n="compare.trackLoadFailed" data-i18n-params='{"side":"A"}'>Track A failed to load.</span> <a data-compare-fallback href="assets/videos/MiniMax_H3_KFP_Bshort_1344x768_124f_4step_00001_.mp4" data-i18n="compare.openMp4">Open MP4</a>.</p>
+            </div>
+          </article>
+
+          <article class="compare-rail" data-compare-side="b">
+            <div class="compare-select-row"><span class="bay-id bay-b">B</span>
+              <label for="compare-b-select" data-i18n="compare.runB">Run B</label>
+              <select id="compare-b-select" data-default="c4">
+                <option value="final20">Final C tier / 20 steps</option>
+                <option value="c4" selected>C tier / 4 steps</option>
+                <option value="bshort4">B-short / 4 steps</option>
+                <option value="c1">C tier preflight / 1 step</option>
+                <option value="bshort1">B-short preflight / 1 step</option>
+              </select>
+            </div>
+            <header><div><h3 data-compare-title>C tier / 4 steps</h3><p data-compare-spec>1024×576 / 243 frames / 10.125 sec</p></div><a class="compare-source" data-compare-source data-media-trigger data-media-id="c4" href="assets/videos/MiniMax_H3_KFP_C_1024x576_243f_4step_00001_.mp4" data-i18n="compare.nativeView">View 1:1</a></header>
+            <div class="video-shell">
+              <video data-compare-video controls muted playsinline preload="metadata" poster="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png" aria-label="Track B comparison video" data-i18n-aria-label="a11y.compareB">
+                <source src="assets/videos/MiniMax_H3_KFP_C_1024x576_243f_4step_00001_.mp4" type="video/mp4">
+              </video>
+              <p class="media-error" hidden><span data-i18n="compare.trackLoadFailed" data-i18n-params='{"side":"B"}'>Track B failed to load.</span> <a data-compare-fallback href="assets/videos/MiniMax_H3_KFP_C_1024x576_243f_4step_00001_.mp4" data-i18n="compare.openMp4">Open MP4</a>.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="compare-master control-deck" role="group" aria-label="Shared video controls" data-i18n-aria-label="a11y.compareControls">
+          <div class="control-deck-title"><strong data-i18n="compare.sharedTitle">A/B synchronized playback</strong><p id="compare-status" class="compare-status" aria-live="polite">Reading video metadata…</p></div>
+          <div class="compare-actions">
+            <button id="compare-play-toggle" class="button button-primary" type="button">Play both</button>
+            <button id="compare-reset" class="button button-quiet" type="button" data-i18n="compare.reset">Back to start</button>
+          </div>
+          <div class="compare-scrubber">
+            <label for="compare-progress" data-i18n="compare.masterProgress">Master progress</label>
+            <input id="compare-progress" type="range" min="0" max="1000" value="0" step="1" disabled>
+            <output id="compare-clock" for="compare-progress">0% / A 00:00 / B 00:00</output>
+          </div>
+          <fieldset class="segmented-control"><legend data-i18n="compare.syncMode">Synchronization mode</legend>
+            <label><input id="compare-sync-progress" type="radio" name="compare-sync" value="progress" checked><span data-i18n="compare.progressAlign">Align progress</span></label>
+            <label><input id="compare-sync-time" type="radio" name="compare-sync" value="time"><span data-i18n="compare.timeAlign">Align time</span></label>
+          </fieldset>
+          <fieldset class="segmented-control"><legend data-i18n="compare.audioSource">Audio source</legend>
+            <label><input id="compare-audio-muted" type="radio" name="compare-audio" value="muted" checked><span data-i18n="compare.muted">Muted</span></label>
+            <label><input id="compare-audio-a" type="radio" name="compare-audio" value="a"><span data-i18n="compare.audioA">A audio</span></label>
+            <label><input id="compare-audio-b" type="radio" name="compare-audio" value="b"><span data-i18n="compare.audioB">B audio</span></label>
+          </fieldset>
+        </div>
+
+        <div id="compare-diff-grid" class="compare-diff-grid telemetry-table" role="group" aria-label="Six aligned comparison metrics" data-i18n-aria-label="a11y.telemetry" data-telemetry-lock>
+          <article class="telemetry-fallback-item"><h3>Resolution</h3><span>A 1344×768</span><strong>A has more pixels</strong><span>B 1024×576</span></article>
+          <article class="telemetry-fallback-item"><h3>Frames</h3><span>A 124 frames</span><strong>B has more frames</strong><span>B 243 frames</span></article>
+          <article class="telemetry-fallback-item"><h3>Duration</h3><span>A 5.167 sec</span><strong>B is longer</strong><span>B 10.125 sec</span></article>
+          <article class="telemetry-fallback-item"><h3>Sampling</h3><span>A 4 steps</span><strong>Equal sampling steps</strong><span>B 4 steps</span></article>
+          <article class="telemetry-fallback-item"><h3>Generation time</h3><span>A 537.49 sec</span><strong>A generated faster</strong><span>B 650.96 sec</span></article>
+          <article class="telemetry-fallback-item"><h3>Result</h3><span>A Success</span><strong>Both runs verified</strong><span>B Success</span></article>
+        </div>
+
+        <div class="run-selector" id="run-selector">
+          <div class="run-selector-heading"><div><strong id="run-strip-title" data-i18n="run.heading">Published runs</strong><span data-i18n="run.help">Assign any run to A or B</span></div><span data-i18n="run.count">5 videos · 2 contact sheets</span></div>
+          <ul class="run-strip">
+            <li class="run-item" data-run-id="final20"><span class="run-number">01</span><div><strong data-run-title>Final C / 20</strong><span data-run-spec>1024×576 · 243 frames</span><small data-run-status>2762.89s · Success</small></div><span class="run-assign"><button type="button" data-run-assign="a" data-run-id="final20">A</button><button type="button" data-run-assign="b" data-run-id="final20">B</button></span></li>
+            <li class="run-item is-b" data-run-id="c4"><span class="run-number">02</span><div><strong data-run-title>C tier / 4</strong><span data-run-spec>1024×576 · 243 frames</span><small data-run-status>650.96s · Success</small></div><span class="run-assign"><button type="button" data-run-assign="a" data-run-id="c4">A</button><button type="button" data-run-assign="b" data-run-id="c4" aria-pressed="true">B</button></span></li>
+            <li class="run-item is-a" data-run-id="bshort4"><span class="run-number">03</span><div><strong data-run-title>B-short / 4</strong><span data-run-spec>1344×768 · 124 frames</span><small data-run-status>537.49s · Success</small></div><span class="run-assign"><button type="button" data-run-assign="a" data-run-id="bshort4" aria-pressed="true">A</button><button type="button" data-run-assign="b" data-run-id="bshort4">B</button></span></li>
+            <li class="run-item" data-run-id="c1"><span class="run-number">04</span><div><strong data-run-title>C preflight / 1</strong><span data-run-spec>1024×576 · 243 frames</span><small data-run-status>Timing not recorded · Success</small></div><span class="run-assign"><button type="button" data-run-assign="a" data-run-id="c1">A</button><button type="button" data-run-assign="b" data-run-id="c1">B</button></span></li>
+            <li class="run-item" data-run-id="bshort1"><span class="run-number">05</span><div><strong data-run-title>B-short preflight</strong><span data-run-spec>1344×768 · 124 frames</span><small data-run-status>Timing not recorded · Success</small></div><span class="run-assign"><button type="button" data-run-assign="a" data-run-id="bshort1">A</button><button type="button" data-run-assign="b" data-run-id="bshort1">B</button></span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="recommendation section" id="recommendation" aria-labelledby="recommendation-title">
+        <div class="recommendation-intro">
+          <h2 id="recommendation-title" data-i18n="recommendation.title">Choose the shot objective before the parameters</h2>
+          <p data-i18n="recommendation.intro">This laptop cannot maximize resolution, duration, and sampling steps at the same time. Each practical target below has a result you can inspect.</p>
+        </div>
+        <div class="preset-grid">
+          <article class="preset-wide"><span data-i18n="recommendation.finalLabel">Best verified</span><h3 data-i18n="recommendation.finalTitle">C / 20 steps</h3><p data-i18n="recommendation.finalText">The strongest verified balance of ten-second narrative, motion, and final detail.</p><button type="button" data-media-trigger data-media-id="final20" data-i18n="media.playVideo">Play video</button></article>
+          <article><span data-i18n="recommendation.resolutionLabel">Resolution first</span><h3 data-i18n="recommendation.resolutionTitle">B-short / 4 steps</h3><p data-i18n="recommendation.resolutionText">Use the higher 1344×768 frame when a five-second shot is enough.</p></article>
+          <article><span data-i18n="recommendation.lengthLabel">Length first</span><h3 data-i18n="recommendation.lengthTitle">C / 4 steps</h3><p data-i18n="recommendation.lengthText">Use the full ten seconds to validate shot rhythm before spending on sampling.</p></article>
+          <article class="preset-quiet"><span data-i18n="recommendation.preflightLabel">Fast preflight</span><h3 data-i18n="recommendation.preflightTitle">1 step</h3><p data-i18n="recommendation.preflightText">Check composition, motion direction, and workflow connectivity first.</p></article>
+        </div>
+      </section>
+
+      <section class="media-library section" id="media-library" aria-labelledby="media-library-title">
+        <div class="section-heading">
+          <h2 id="media-library-title" data-i18n="media.sectionTitle">All results in one player</h2>
+          <p data-i18n="media.sectionIntro">All five videos and two contact sheets retain their original files. The viewer fits media to the window by default and can switch to native 1:1 pixels.</p>
+        </div>
+
+        <div class="media-library-grid">
+          <a class="media-card media-card-featured" href="assets/videos/MiniMax_H3_KFP_FINAL_C_1024x576_243f_20step_00001_.mp4"
+            data-media-trigger data-media-catalog data-media-id="final20" data-media-type="video"
+            data-media-src="assets/videos/MiniMax_H3_KFP_FINAL_C_1024x576_243f_20step_00001_.mp4"
+            data-media-poster="assets/images/MiniMax_H3_KFP_FINAL_C_20step_contact_sheet.png"
+            data-media-title-key="media.final20.title" data-media-description-key="media.final20.description"
+            data-media-width="1024" data-media-height="576" data-media-frames="243"
+            data-media-duration="10.125" data-media-steps="20" data-media-elapsed="2762.89"
+            data-media-status-key="status.success" data-media-tier="C" data-media-recommendation-key="recommendation.bestVerified"
+            aria-label="Open the final C tier 20-step video" data-i18n-aria-label="media.openFinal">
+            <span class="media-card-visual"><img src="assets/images/MiniMax_H3_KFP_FINAL_C_20step_contact_sheet.png" alt="" width="1536" height="640"></span>
+            <span class="media-card-copy"><small data-i18n="media.finalResult">Final result</small><strong data-i18n="media.final20.title">Final C tier / 20 steps</strong><span data-i18n="media.final20.description">1024×576 / 243 frames / 10.125 sec / 2762.89 sec local generation</span></span>
+            <span class="media-card-action" data-i18n="media.playVideo">Play video</span>
+          </a>
+
+          <a class="media-card" href="assets/videos/MiniMax_H3_KFP_C_1024x576_243f_4step_00001_.mp4"
+            data-media-trigger data-media-catalog data-media-id="c4" data-media-type="video"
+            data-media-src="assets/videos/MiniMax_H3_KFP_C_1024x576_243f_4step_00001_.mp4"
+            data-media-poster="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png"
+            data-media-title-key="media.c4.title" data-media-description-key="media.c4.description"
+            data-media-width="1024" data-media-height="576" data-media-frames="243"
+            data-media-duration="10.125" data-media-steps="4" data-media-elapsed="650.96"
+            data-media-status-key="status.success" data-media-tier="C" data-media-recommendation-key="recommendation.lengthPriority"
+            aria-label="Open the C tier four-step video" data-i18n-aria-label="media.openC4">
+            <span class="media-card-visual"><img src="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png" alt="" width="1920" height="612" loading="lazy"></span>
+            <span class="media-card-copy"><small data-i18n="recommendation.lengthPriority">Length priority</small><strong data-i18n="media.c4.title">C tier / 4 steps</strong><span data-i18n="media.c4.description">1024×576 / 243 frames / 10.125 sec / 650.96 sec local generation</span></span>
+            <span class="media-card-action" data-i18n="media.playVideo">Play video</span>
+          </a>
+
+          <a class="media-card" href="assets/videos/MiniMax_H3_KFP_Bshort_1344x768_124f_4step_00001_.mp4"
+            data-media-trigger data-media-catalog data-media-id="bshort4" data-media-type="video"
+            data-media-src="assets/videos/MiniMax_H3_KFP_Bshort_1344x768_124f_4step_00001_.mp4"
+            data-media-poster="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png"
+            data-media-title-key="media.bshort4.title" data-media-description-key="media.bshort4.description"
+            data-media-width="1344" data-media-height="768" data-media-frames="124"
+            data-media-duration="5.167" data-media-steps="4" data-media-elapsed="537.49"
+            data-media-status-key="status.success" data-media-tier="B-short" data-media-recommendation-key="recommendation.resolutionPriority"
+            aria-label="Open the B-short four-step video" data-i18n-aria-label="media.openBshort4">
+            <span class="media-card-visual"><img src="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png" alt="" width="1920" height="612" loading="lazy"></span>
+            <span class="media-card-copy"><small data-i18n="recommendation.resolutionPriority">Resolution priority</small><strong data-i18n="media.bshort4.title">B-short / 4 steps</strong><span data-i18n="media.bshort4.description">1344×768 / 124 frames / 5.167 sec / 537.49 sec local generation</span></span>
+            <span class="media-card-action" data-i18n="media.playVideo">Play video</span>
+          </a>
+
+          <a class="media-card media-card-compact" href="assets/videos/MiniMax_H3_KFP_C_preflight_1024x576_243f_1step_00001_.mp4"
+            data-media-trigger data-media-catalog data-media-id="c1" data-media-type="video"
+            data-media-src="assets/videos/MiniMax_H3_KFP_C_preflight_1024x576_243f_1step_00001_.mp4"
+            data-media-poster="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png"
+            data-media-title-key="media.c1.title" data-media-description-key="media.c1.description"
+            data-media-width="1024" data-media-height="576" data-media-frames="243"
+            data-media-duration="10.125" data-media-steps="1" data-media-elapsed=""
+            data-media-status-key="status.success" data-media-tier="C" data-media-recommendation-key="recommendation.preflight"
+            aria-label="Open the C tier one-step preflight video" data-i18n-aria-label="media.openC1">
+            <span class="media-card-copy"><small data-i18n="recommendation.preflight">Fast preflight</small><strong data-i18n="media.c1.title">C tier preflight / 1 step</strong><span data-i18n="media.c1.description">1024×576 / 243 frames / 10.125 sec / generation time not recorded</span></span>
+            <span class="media-card-action" data-i18n="media.playVideo">Play video</span>
+          </a>
+
+          <a class="media-card media-card-compact" href="assets/videos/MiniMax_H3_KFP_Bshort_preflight_1344x768_124f_1step_00001_.mp4"
+            data-media-trigger data-media-catalog data-media-id="bshort1" data-media-type="video"
+            data-media-src="assets/videos/MiniMax_H3_KFP_Bshort_preflight_1344x768_124f_1step_00001_.mp4"
+            data-media-poster="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png"
+            data-media-title-key="media.bshort1.title" data-media-description-key="media.bshort1.description"
+            data-media-width="1344" data-media-height="768" data-media-frames="124"
+            data-media-duration="5.167" data-media-steps="1" data-media-elapsed=""
+            data-media-status-key="status.success" data-media-tier="B-short" data-media-recommendation-key="recommendation.preflight"
+            aria-label="Open the B-short one-step preflight video" data-i18n-aria-label="media.openBshort1">
+            <span class="media-card-copy"><small data-i18n="recommendation.preflight">Fast preflight</small><strong data-i18n="media.bshort1.title">B-short preflight / 1 step</strong><span data-i18n="media.bshort1.description">1344×768 / 124 frames / 5.167 sec / generation time not recorded</span></span>
+            <span class="media-card-action" data-i18n="media.playVideo">Play video</span>
+          </a>
+
+          <a class="media-card media-card-image" href="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png"
+            data-media-trigger data-media-catalog data-media-id="study4" data-media-type="image"
+            data-media-src="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png"
+            data-media-title-key="media.study4.title" data-media-description-key="media.study4.description"
+            data-media-width="1920" data-media-height="612"
+            aria-label="Open the four-step configuration contact sheet" data-i18n-aria-label="media.openStudy4">
+            <span class="media-card-visual"><img src="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png" alt="" width="1920" height="612" loading="lazy"></span>
+            <span class="media-card-copy"><small data-i18n="media.frameComparison">Frame comparison</small><strong data-i18n="media.study4.title">B-short and C / 4-step contact sheet</strong><span>1920×612</span></span>
+            <span class="media-card-action" data-i18n="media.viewImage">View image</span>
+          </a>
+
+          <a class="media-card media-card-image" href="assets/images/MiniMax_H3_KFP_FINAL_C_20step_contact_sheet.png"
+            data-media-trigger data-media-catalog data-media-id="timeline20" data-media-type="image"
+            data-media-src="assets/images/MiniMax_H3_KFP_FINAL_C_20step_contact_sheet.png"
+            data-media-title-key="media.timeline20.title" data-media-description-key="media.timeline20.description"
+            data-media-width="1536" data-media-height="640"
+            aria-label="Open the final 20-step timeline contact sheet" data-i18n-aria-label="media.openTimeline20">
+            <span class="media-card-visual"><img src="assets/images/MiniMax_H3_KFP_FINAL_C_20step_contact_sheet.png" alt="" width="1536" height="640" loading="lazy"></span>
+            <span class="media-card-copy"><small data-i18n="media.finalResult">Final result</small><strong data-i18n="media.timeline20.title">Final 20-step timeline</strong><span>1536×640</span></span>
+            <span class="media-card-action" data-i18n="media.viewImage">View image</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="matrix section" id="matrix" aria-labelledby="matrix-title">
+        <div class="section-heading section-heading-actions">
+          <div><h2 id="matrix-title" data-i18n="matrix.title">Five runs reveal one real boundary</h2><p data-i18n="matrix.intro">With the same model and seed, spatial pixels and temporal frames decide whether a run can start; sampling steps mainly change generation time and detail.</p></div>
+          <div class="filter-group" role="group" aria-label="Filter experiment results" data-i18n-aria-label="a11y.filterResults">
+            <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true" data-i18n="matrix.filterAll">All</button>
+            <button type="button" class="filter-button" data-filter="success" aria-pressed="false" data-i18n="matrix.filterSuccess">Success</button>
+            <button type="button" class="filter-button" data-filter="failed" aria-pressed="false" data-i18n="matrix.filterFailed">Failed</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption data-i18n="matrix.caption">MiniMax H3 local configuration results</caption>
+            <thead><tr><th data-i18n="matrix.experiment">Experiment</th><th data-i18n="matrix.resolution">Resolution</th><th data-i18n="matrix.framesDuration">Frames &amp; duration</th><th data-i18n="matrix.steps">Steps</th><th data-i18n="matrix.result">Result</th><th data-i18n="matrix.observation">Key observation</th></tr></thead>
+            <tbody>
+              <tr data-result="failed"><td data-label="Experiment" data-i18n-data-label="matrix.experiment"><strong data-i18n="matrix.runA">A upper bound</strong></td><td data-label="Resolution" data-i18n-data-label="matrix.resolution">1344×768</td><td data-label="Frames &amp; duration" data-i18n-data-label="matrix.framesDuration">362 / 15.08s</td><td data-label="Steps" data-i18n-data-label="matrix.steps">1</td><td data-label="Result" data-i18n-data-label="matrix.result"><span class="result-pill result-failed" data-i18n="status.oom">OOM</span></td><td data-label="Key observation" data-i18n-data-label="matrix.observation" data-i18n="matrix.obsA">A single QKV allocation requested 4.38 GiB; 8GB VRAM could not contain it</td></tr>
+              <tr data-result="failed"><td data-label="Experiment" data-i18n-data-label="matrix.experiment"><strong data-i18n="matrix.runBLong">B-long</strong></td><td data-label="Resolution" data-i18n-data-label="matrix.resolution">1344×768</td><td data-label="Frames &amp; duration" data-i18n-data-label="matrix.framesDuration">243 / 10.13s</td><td data-label="Steps" data-i18n-data-label="matrix.steps">1</td><td data-label="Result" data-i18n-data-label="matrix.result"><span class="result-pill result-failed" data-i18n="status.stalled">Stalled</span></td><td data-label="Key observation" data-i18n-data-label="matrix.observation" data-i18n="matrix.obsBLong">Process private memory reached about 27.8 GiB and unloading stopped progressing</td></tr>
+              <tr data-result="success"><td data-label="Experiment" data-i18n-data-label="matrix.experiment"><strong data-i18n="matrix.runBShort">B-short</strong></td><td data-label="Resolution" data-i18n-data-label="matrix.resolution">1344×768</td><td data-label="Frames &amp; duration" data-i18n-data-label="matrix.framesDuration">124 / 5.17s</td><td data-label="Steps" data-i18n-data-label="matrix.steps">4</td><td data-label="Result" data-i18n-data-label="matrix.result"><span class="result-pill result-success" data-i18n="status.success">Success</span></td><td data-label="Key observation" data-i18n-data-label="matrix.observation" data-i18n="matrix.obsBShort">537.49 sec; highest verified resolution</td></tr>
+              <tr data-result="success"><td data-label="Experiment" data-i18n-data-label="matrix.experiment"><strong data-i18n="matrix.runCBalanced">C balanced</strong></td><td data-label="Resolution" data-i18n-data-label="matrix.resolution">1024×576</td><td data-label="Frames &amp; duration" data-i18n-data-label="matrix.framesDuration">243 / 10.13s</td><td data-label="Steps" data-i18n-data-label="matrix.steps">4</td><td data-label="Result" data-i18n-data-label="matrix.result"><span class="result-pill result-success" data-i18n="status.success">Success</span></td><td data-label="Key observation" data-i18n-data-label="matrix.observation" data-i18n="matrix.obsC">650.96 sec; complete four-beat action narrative</td></tr>
+              <tr class="final-row" data-result="success"><td data-label="Experiment" data-i18n-data-label="matrix.experiment"><strong data-i18n="matrix.runFinal">Final result</strong></td><td data-label="Resolution" data-i18n-data-label="matrix.resolution">1024×576</td><td data-label="Frames &amp; duration" data-i18n-data-label="matrix.framesDuration">243 / 10.13s</td><td data-label="Steps" data-i18n-data-label="matrix.steps">20</td><td data-label="Result" data-i18n-data-label="matrix.result"><span class="result-pill result-final" data-i18n="status.recommended">Recommended</span></td><td data-label="Key observation" data-i18n-data-label="matrix.observation" data-i18n="matrix.obsFinal">2762.89 sec; every media integrity check passed</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="limits section" id="limits" aria-labelledby="limits-title">
+        <div class="section-heading"><h2 id="limits-title" data-i18n="limits.title">What the failed runs reveal</h2><p data-i18n="limits.intro">More steps increase runtime but barely change peak VRAM. The real threshold is the activation scale created by spatial pixels and temporal frames.</p></div>
+        <div class="limit-flow" role="group" aria-label="Configuration reduction path" data-i18n-aria-label="a11y.limitFlow">
+          <article class="limit-card limit-danger"><span class="limit-number">4.38GiB</span><h3 data-i18n="limits.vramTitle">VRAM hard wall</h3><p data-i18n="limits.vramText">At 1344×768 and 362 frames, one attention QKV allocation exceeds the remaining VRAM.</p><dl><div><dt data-i18n="limits.allocated">Allocated</dt><dd>4.32GiB</dd></div><div><dt data-i18n="limits.outcome">Outcome</dt><dd>CUDA OOM</dd></div></dl></article>
+          <article class="limit-card limit-warn"><span class="limit-number">27.8GiB</span><h3 data-i18n="limits.ramTitle">System-memory unloading stall</h3><p data-i18n="limits.ramText">At 1344×768 and 243 frames, sampling begins but model unloading cannot keep progressing.</p><dl><div><dt>GPU</dt><dd>7.9 / 8.2GB</dd></div><div><dt data-i18n="limits.activity">Activity</dt><dd>0 CPU / 0 GPU</dd></div></dl></article>
+          <article class="limit-card limit-safe"><span class="limit-number">10.125s</span><h3 data-i18n="limits.safeTitle">Recoverable work zone</h3><p data-i18n="limits.safeText">At 1024×576 and 243 frames, enough margin remains to finish both VAEs and muxing.</p><dl><div><dt data-i18n="limits.gpuPeak">GPU peak</dt><dd>≈ 6.46GB</dd></div><div><dt data-i18n="limits.finalSteps">Final steps</dt><dd>20</dd></div></dl></article>
+        </div>
+        <aside class="caveat"><strong data-i18n="limits.boundary">Boundary statement</strong><p data-i18n="limits.caveat">Intermediate combinations such as 1152×640 and 1024×576×362 frames have not been tested. This report identifies complete, decodable safe points, not an exhaustive search of every parameter combination.</p></aside>
+      </section>
+
+      <section class="gallery section" id="gallery" aria-labelledby="gallery-title">
+        <div class="section-heading"><h2 id="gallery-title" data-i18n="gallery.title">How detail grows from preflight to final</h2><p data-i18n="gallery.intro">Four steps are enough to judge composition and action. Twenty steps visibly improve character edges, trap detail, and boss form.</p></div>
+        <div class="gallery-grid">
+          <figure class="gallery-card"><img src="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png" alt="Eight-frame comparison with B-short above and C tier below" data-i18n-alt="media.study4.alt" loading="lazy" width="1920" height="612"><figcaption><div><strong data-i18n="gallery.studyTitle">4-step configuration study</strong><span data-i18n="gallery.studyCaption">1344×768 above, 1024×576 below</span></div><button type="button" data-media-trigger data-media-id="study4" data-i18n="gallery.native">View original 1:1</button></figcaption></figure>
+          <figure class="gallery-card gallery-card-final"><img src="assets/images/MiniMax_H3_KFP_FINAL_C_20step_contact_sheet.png" alt="Six-frame timeline of the final 20-step video" data-i18n-alt="media.timeline20.alt" loading="lazy" width="1536" height="640"><figcaption><div><strong data-i18n="gallery.finalTitle">20-step final timeline</strong><span data-i18n="gallery.finalCaption">Bridge · traps · wolves · boss</span></div><button type="button" data-media-trigger data-media-id="timeline20" data-i18n="gallery.native">View original 1:1</button></figcaption></figure>
+        </div>
+      </section>
+
+      <section class="verification section" id="verification" aria-labelledby="verification-title">
+        <div class="section-heading"><h2 id="verification-title" data-i18n="verification.title">Complete generation also means complete decoding</h2><p data-i18n="verification.intro">The final file was read frame by frame for video and audio, with queue, history, encoding, and content statistics checked independently.</p></div>
+        <div class="verification-grid">
+          <article><span data-i18n="verification.video">Video</span><strong>243 / 243</strong><p data-i18n="verification.videoText">H.264 / yuv420p / 24fps</p></article>
+          <article><span data-i18n="verification.audio">Audio</span><strong>317 frames</strong><p data-i18n="verification.audioText">AAC / 32kHz / Stereo</p></article>
+          <article><span data-i18n="verification.motion">Motion</span><strong>15.979</strong><p data-i18n="verification.motionText">Mean adjacent-frame change; not black or frozen</p></article>
+          <article><span data-i18n="verification.run">Run</span><strong>2762.89s</strong><p data-i18n="verification.runText">End-to-end local RTX 4060 Laptop run</p></article>
+        </div>
+        <div class="hash-block"><div><span data-i18n="verification.hash">Final MP4 SHA256</span><code id="final-hash">BA978D87ECAD4DDF5A099FF842AA1E487FDF55D97F7E7C1051F4969ABF5856D5</code></div><button class="copy-button" type="button" data-copy-target="final-hash" data-i18n="verification.copyHash">Copy hash</button></div>
+      </section>
+
+      <section class="reproduce section" id="reproduce" aria-labelledby="reproduce-title">
+        <div class="section-heading"><h2 id="reproduce-title" data-i18n="reproduce.title">Information required to reproduce the run</h2><p data-i18n="reproduce.intro">The video node graph keeps the same seed and sampling path while changing only resolution, frame count, and steps.</p></div>
+        <div class="reproduce-grid">
+          <article class="stack-card"><h3 data-i18n="reproduce.hardware">Hardware and runtime</h3><dl><div><dt data-i18n="reproduce.gpu">GPU</dt><dd>NVIDIA RTX 4060 Laptop / 8GB</dd></div><div><dt data-i18n="reproduce.ram">RAM</dt><dd>31.7GB</dd></div><div><dt>ComfyUI</dt><dd>0.30.0</dd></div><div><dt>PyTorch</dt><dd>2.13.0 + CUDA 13.0</dd></div><div><dt data-i18n="reproduce.launch">Launch</dt><dd><code>--fast-disk --reserve-vram 2</code></dd></div></dl></article>
+          <article class="stack-card"><h3 data-i18n="reproduce.modelStack">Model stack</h3><ul class="model-list"><li><span>Diffusion</span><code>minimax_h3_fl2va_pruned_int8_convrot.safetensors</code></li><li><span>Text</span><code>qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors</code></li><li><span>Video VAE</span><code>minimax_h3_video_vae_fp16.safetensors</code></li><li><span>Audio VAE</span><code>minimax_h3_audio_vae_fp32.safetensors</code></li></ul></article>
+          <article class="stack-card sampler-card"><h3 data-i18n="reproduce.sampling">Sampling parameters</h3><div class="sampler-metrics"><div><span>Sampler</span><strong>res_multistep</strong></div><div><span>Scheduler</span><strong>simple</strong></div><div><span>Seed</span><strong>20260805</strong></div><div><span>Denoise</span><strong>1.0</strong></div></div></article>
+        </div>
+        <details class="prompt-details"><summary data-i18n="reproduce.prompt">View the final English prompt</summary><pre><code>High-end Unreal Engine 5 gameplay footage of a 3D side-scrolling action platform game starring a heroic chubby black-and-white kung fu panda warrior. One continuous side-view tracking shot through a lush ancient Chinese bamboo mountain valley. Detailed fur simulation, physically based materials, global illumination, volumetric sunlight, mist, flying bamboo leaves, polished AAA game graphics, expressive animation, powerful readable combat impacts.
+
+Timeline:
+[0s-2s] The panda sprints left to right on a mossy stone path and leaps across a broken bridge over a misty ravine.
+[2s-4s] He rolls under a swinging wooden trap, jumps over spikes and lands in a kung fu stance.
+[4s-7s] Armored wolf soldiers attack; he blocks, punches, palm-strikes and kicks them away with dust and leaf impact effects.
+[7s-10s] A large armored yak boss swings a hammer; the panda dodges, runs up a bamboo ramp and defeats it with a slow-motion spinning flying kick in golden sunset light.
+
+Camera: strict 2.5D side view, smooth horizontal tracking at constant distance, one uninterrupted take, no cuts, no zoom, no orbit, no first-person view. No HUD, menu, subtitles, captions, logos, watermark, written text, live action, extra limbs or deformed anatomy.
+
+Audio: synchronized footsteps, cloth movement, bamboo forest wind, bridge creaks, landing impacts, trap whooshes, crisp kung fu punches and kicks, armor hits, a deep boss hammer impact, restrained cinematic Chinese drums and low strings. No dialogue, narration or vocals.</code></pre></details>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer" data-i18n-aria-label="a11y.siteFooter">
+      <div><span class="brand-mark" aria-hidden="true">H3</span><p><strong data-i18n="footer.title">MiniMax H3 Local Performance Lab</strong><small data-i18n="footer.subtitle">RTX 4060 Laptop local performance report</small></p></div>
+      <p><span data-i18n="footer.repo">This complete directory can be published as an independent GitHub Pages repository.</span> <a href="README.md" data-i18n="footer.readme">Read publishing instructions</a></p>
+    </footer>
+
+    <dialog class="media-lightbox" id="media-lightbox" aria-labelledby="media-title" aria-describedby="media-description">
+      <div class="media-lightbox-shell">
+        <header class="media-lightbox-header" aria-label="Media viewer title bar" data-i18n-aria-label="a11y.viewerHeader"><div><span id="media-kind">MEDIA</span><strong id="media-title" data-i18n="dialog.viewer">Media viewer</strong></div><span id="media-counter" aria-live="polite">1 / 7</span><button class="icon-button" id="media-close" type="button" aria-label="Close media viewer" data-i18n-aria-label="a11y.closeViewer" data-i18n="dialog.close">Close</button></header>
+        <div class="media-stage" id="media-stage" data-media-mode="fit"><video id="lightbox-video" controls playsinline preload="metadata" hidden></video><img id="lightbox-image" src="assets/images/KFP_Bshort_vs_C_4step_contact_sheet.png" width="1920" height="612" alt="" hidden><div class="media-lightbox-error" id="media-lightbox-error" role="alert" hidden></div></div>
+        <footer class="media-lightbox-footer" aria-label="Media viewer controls" data-i18n-aria-label="a11y.viewerFooter"><div class="media-lightbox-meta"><p id="media-description"></p><span id="media-dimensions"></span></div><div class="media-lightbox-actions"><button id="media-previous" type="button" data-i18n="dialog.previous">Previous</button><button id="media-fit" type="button" aria-pressed="true" data-i18n="dialog.fit">Fit window</button><button id="media-native" type="button" aria-pressed="false" data-i18n="dialog.native">Original 1:1</button><button id="media-next" type="button" data-i18n="dialog.next">Next</button><a id="media-open-source" href="assets/videos/MiniMax_H3_KFP_FINAL_C_1024x576_243f_20step_00001_.mp4" target="_blank" rel="noopener" data-i18n="dialog.openSource">Open original file</a></div></footer>
+      </div>
+    </dialog>
+
+    <noscript><p class="noscript">JavaScript is disabled. The report, tables, and native video controls remain available; shared A/B controls, language memory, and the media viewer are unavailable.</p></noscript>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+name: Website or media bug
+description: Report a reproducible display, playback, accessibility, or data issue.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping keep the benchmark accurate and usable.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 140 / Edge 140 / Safari 19
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: Device or viewport
+      placeholder: Windows 11, 1440×900
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      placeholder: "1. Open…\n2. Select…\n3. Observe…"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Attach a screenshot or console excerpt with secrets removed.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed credentials, tokens, and private machine information.
+          required: true

@@ -1,0 +1,26 @@
+# Local tooling and test artifacts
+.playwright-cli/
+.impeccable/
+output/
+node_modules/
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.venv/
+
+# ComfyUI runtime data and models must never be committed
+models/
+input/
+temp/
+user/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
